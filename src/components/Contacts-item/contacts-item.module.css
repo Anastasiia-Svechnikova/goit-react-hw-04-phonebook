@@ -1,0 +1,20 @@
+.item {
+    height: 40px;
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgb(88, 87, 87);
+
+    transition: transform 150ms ease-in;
+
+}
+
+.name {
+    font-family: serif;
+    font-style: italic;
+    min-width: 40%
+}
+
+
+.focus {
+    transform: scale(1.05);
+}
