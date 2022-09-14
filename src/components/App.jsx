@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ContactsList } from './Contacts-list';
 import { Form } from './Form';
 import { Filter } from './Filter';
@@ -6,7 +6,7 @@ import { Section } from './Section';
 import { EmptyNotification } from './Empty-notification';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(JSON.parse(
+  const [contacts, setContacts] = useState(()=> JSON.parse(
       localStorage.getItem('contacts') )?? []);
   const [filter, setFilter] = useState('');
 
@@ -34,12 +34,16 @@ export const App = () => {
     console.log(contacts)
   };
 
-  const filteredContacts = contacts.length
-    ? contacts.filter(({ name }) =>
-        name.toLowerCase().includes(filter.toLowerCase())
-      )
+
+
+  const filteredContacts = useMemo(() => {
+    console.log('hihihhih')
+    return contacts.length
+    ? contacts.filter(({ name }) => {
+      return name.toLowerCase().includes(filter.toLowerCase())
+    } )
     : [];
-  
+  }, [contacts, filter])
   return (
     <div>
       <h1>Phone Book</h1>
