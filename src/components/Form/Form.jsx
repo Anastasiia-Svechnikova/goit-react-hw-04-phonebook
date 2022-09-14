@@ -1,42 +1,45 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import s from "./form.module.css";
 import Button from "components/Button";
 
 
-export default class Form extends Component{
-    
-    state = {
-        name: '',
-        number: '',
-    }
+export const Form =({onSubmit})=> {
 
-    onInputChange = e => {
-        this.setState({[e.currentTarget.name]: e.currentTarget.value})
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('')
+    
+    const onInputChange = e => {
+        switch (e.currentTarget.name) {
+            case 'name':
+                setName(e.currentTarget.value);
+                break;
+            case 'number':
+                setNumber(e.currentTarget.value);
+                break;
+            default:
+                console.log(e.currentTarget.name + ' is not a valid value');
+        }
     }
     
-    onFormSubmit = e => {
+    const onFormSubmit = e => {
         e.preventDefault();
-        const newContact = {id: nanoid(), ...this.state, }
-        this.props.onSubmit(newContact);
-        this.formReset();
+        const newContact = { id: nanoid(), name, number };
+        onSubmit(newContact);
+        formReset();
     }
-    formReset = () => {
-        this.setState({
-        name: '',
-        number: '',
-    })
+    const formReset = () => {
+        setName('');
+        setNumber('');
     }
-
-    render() {
 
         return (
-            <form className={s.form} onSubmit={this.onFormSubmit}>  
+            <form className={s.form} onSubmit={onFormSubmit}>  
                 <label className={s.label}>
                     Name 
-                    <input onChange={this.onInputChange}
-                        value={this.state.name}
+                    <input onChange={onInputChange}
+                        value={name}
                         className={s.input}
                         type="text"
                         name="name"
@@ -48,8 +51,8 @@ export default class Form extends Component{
                 <label className={s.label}>
                     Number 
                     <input
-                        onChange={this.onInputChange}
-                        value={this.state.number}
+                        onChange={onInputChange}
+                        value={number}
                         className={s.input}
                         type="tel"
                         name="number"
@@ -63,8 +66,11 @@ export default class Form extends Component{
     )
 }
 
-}
-
 Form.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 }
+
+
+
+
+

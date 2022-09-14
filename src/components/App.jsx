@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ContactsList from "./Contacts-list";
-import Form from "./Form";
+import { Form } from "./Form";
 import Filter from "./Filter";
 import Section from "./Section";
 import EmptyNotification from "./Empty-notification";
@@ -60,7 +60,7 @@ export class App extends Component {
     
     return (
       <div>
-        <h1>Phonebook</h1>
+        <h1>Phone Book</h1>
         <Section>
           <Form onSubmit={this.handleFormSubmit} />
         </Section>
