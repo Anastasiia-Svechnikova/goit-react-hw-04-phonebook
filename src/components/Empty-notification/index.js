@@ -1,1 +1,1 @@
-export {default} from './Empty-notification'
+export {EmptyNotification} from './Empty-notification'

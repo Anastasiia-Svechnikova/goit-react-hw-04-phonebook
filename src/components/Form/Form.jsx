@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import s from "./form.module.css";
-import Button from "components/Button";
+import {Button} from "components/Button";
 
 
 export const Form =({onSubmit})=> {

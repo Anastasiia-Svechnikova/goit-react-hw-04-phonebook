@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import s from './button.module.css';
 
-export default function Button({ type, dlt = false, sbmt = false, onClickHandler, children }) {
+export const Button = ({ type, dlt = false, sbmt = false, onClickHandler, children })=>{
 
     return (
         <button className={classNames(s.btn, {
